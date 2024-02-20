@@ -1,7 +1,7 @@
 // import '@feathersjs/authentication';
 import *as feathersAuthentication from '@feathersjs/authentication';
 import likeValidation from './hooks/like-validation.js';
-
+import { disallow } from 'feathers-hooks-common';
 const {authenticate}=feathersAuthentication.hooks
 
 export default {
@@ -11,7 +11,7 @@ export default {
     get: [],
     create: [likeValidation()],
     update: [],
-    patch: [],
+    patch: [disallow()],
     remove: []
   },
 

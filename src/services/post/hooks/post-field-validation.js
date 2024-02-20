@@ -9,7 +9,7 @@ export default (options = {}) => {
   return async context => {
     const{data,app}=context
     // console.log(context.toJSON())
-    const {user,title,description}=data
+    const {user,title,description,likeCount}=data
 
     if(!user){
       throw new BadRequest("User is required")

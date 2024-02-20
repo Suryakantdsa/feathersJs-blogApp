@@ -1,8 +1,8 @@
 import *as feathersAuthentication from '@feathersjs/authentication';
 import postFieldValidation from './hooks/post-field-validation.js';
-import noUpdateUser from './hooks/no-update-user.js';
 import isLiked from './hooks/isLiked.js';
 import isCommented from './hooks/isCommented.js';
+import checkPostIdentity from './hooks/checkPostIdentity.js.js';
 
 const {authenticate}=feathersAuthentication.hooks
 
@@ -13,8 +13,8 @@ export default{
     get: [],
     create: [postFieldValidation()],
     update: [],
-    patch: [noUpdateUser()],
-    remove: []
+    patch: [checkPostIdentity()],
+    remove: [checkPostIdentity()]
   },
   after: {
     all: [],

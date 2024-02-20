@@ -1,7 +1,7 @@
 const OnCommentAdded = async (result, context) => {
     const { post } = result;
     const { app } = context
-    console.log(result)
+    // console.log(result)
     const commentCount = await app.service("comment").find({
         query: {
             post,
@@ -13,7 +13,7 @@ const OnCommentAdded = async (result, context) => {
     // console.log(commentCount, post.toString()) 
     // errorEncounted:here commentCOunt was zero because is not able to find the any data match status by default not 1
 
-    await app.service("post").patch(post, { commentCount });
+    await app.service("post")._patch(post, { commentCount });
 
 
 

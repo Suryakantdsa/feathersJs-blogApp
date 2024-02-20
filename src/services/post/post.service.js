@@ -3,6 +3,7 @@ import { Post } from './post.class.js';
 
 import createModel from '../../models/post.model.js';
 import hooks from './post.hooks.js';
+import OnPostCreated from '../post/events/OnPostCreated.js';
 
 export default function (app) {
   const options = {
@@ -17,5 +18,8 @@ export default function (app) {
   // Get our initialized service so that we can register hooks
   const service = app.service('post');
 
+  service.on("created",OnPostCreated)
+  service.on("removed",OnPostCreated)
+  
   service.hooks(hooks);
 };

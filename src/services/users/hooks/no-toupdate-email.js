@@ -8,8 +8,10 @@ export default (options = {}) => {
   return async context => {
     const {data,params}=context
     // console.log(data)
-    if(data.email!==params.user.email){
-      throw new BadRequest("User email can't be changed")
+    if(data.email){
+      if(data.email!==params.user.email){
+        throw new BadRequest("User email can't be changed")
+      }
     }
     return context;
   };

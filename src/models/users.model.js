@@ -21,6 +21,10 @@ export default function (app) {
       type: String,
       required:true
     },
+    blogCount:{
+      type:Number,
+      default:0
+    },
     status:{
       type:Number,
       enum:[

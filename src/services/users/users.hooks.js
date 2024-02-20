@@ -3,6 +3,7 @@ import *as local from '@feathersjs/authentication-local';
 
 import userValidation from '../users/hooks/user-validation.js';
 import noToupdateEmail from './hooks/no-toupdate-email.js';
+import checkUserIdentity from './hooks/checkUserIdentity.js';
 
 const {authenticate}=feathersAuthentication.hooks
 const {hashPassword,protect}=local.hooks
@@ -14,7 +15,7 @@ export default {
     get: [ authenticate('jwt') ],
     create: [hashPassword('password'), userValidation()],
     update: [ hashPassword('password'),  authenticate('jwt') ],
-    patch: [hashPassword('password'), authenticate('jwt'), noToupdateEmail()],
+    patch: [hashPassword('password'), authenticate('jwt'), noToupdateEmail(), checkUserIdentity()],
     remove: [ authenticate('jwt') ]
   },
 

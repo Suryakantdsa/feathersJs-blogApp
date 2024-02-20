@@ -26,6 +26,9 @@ export default (options = {}) => {
     })
     // console.log(user,post)
 
+    // likeCount should be increase through when user post a like .it should not be increased by patching the post data 
+    // how to make it that it should only update with onPostliked not by the patch method on post
+    
     await app.service("like").find(
       {
         query: {
