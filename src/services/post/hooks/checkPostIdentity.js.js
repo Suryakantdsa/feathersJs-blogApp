@@ -9,9 +9,10 @@ export default (options = {}) => {
     const { data, app, params, id } = context
 
     const { user } = params
-
     const { _id } = user
-    
+    if(data?.user){
+      throw new BadRequest("UserId Can't be updated ")
+    }
     await app.service('post').get(id).then((res) => {
       const { user } = res
       if (user.toString() !== _id.toString()) {

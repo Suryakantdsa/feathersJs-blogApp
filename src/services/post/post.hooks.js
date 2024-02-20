@@ -3,6 +3,7 @@ import postFieldValidation from './hooks/post-field-validation.js';
 import isLiked from './hooks/isLiked.js';
 import isCommented from './hooks/isCommented.js';
 import checkPostIdentity from './hooks/checkPostIdentity.js.js';
+import { discard } from 'feathers-hooks-common';
 
 const {authenticate}=feathersAuthentication.hooks
 
@@ -13,7 +14,7 @@ export default{
     get: [],
     create: [postFieldValidation()],
     update: [],
-    patch: [checkPostIdentity()],
+    patch: [checkPostIdentity(),discard("likeCount","commentCount")],
     remove: [checkPostIdentity()]
   },
   after: {

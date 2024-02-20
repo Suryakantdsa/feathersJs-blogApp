@@ -2,17 +2,21 @@
 // For more information on hooks see: http://docs.feathersjs.com/api/hooks.html
 
 import pkg from '@feathersjs/errors';
-const { BadRequest } = pkg;
+const { BadRequest,NotAuthenticated } = pkg;
 
 // eslint-disable-next-line no-unused-vars
 export default (options = {}) => {
   return async context => {
-    const{data,app}=context
-    // console.log(context.toJSON())
-    const {user,title,description,likeCount}=data
+    const{data,params}=context
+    const {user}=params
 
-    if(!user){
-      throw new BadRequest("User is required")
+    const {title,description}=data
+    console.log(user)
+    
+    if(user){
+      data.user=user?._id
+    }else{
+      throw new NotAuthenticated()
     }
     if(!title){
       throw new BadRequest("title is required")
@@ -20,13 +24,6 @@ export default (options = {}) => {
     if(!description){
       throw new BadRequest("description is required")
     }
-
-    await app.service("users").get(user).catch(
-      ()=>{
-        throw new BadRequest("user is invalid")
-      }
-    )
-
     return context;
   };
 };

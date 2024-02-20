@@ -6,6 +6,7 @@ export default (options = {}) => {
     const { data, app, params, id } = context
     const { user } = params
     const { _id } = user
+    // console.log(_id,id)
     if (_id.toString() !== id.toString()) {
         throw new BadRequest('the current user can not be updated')
       }

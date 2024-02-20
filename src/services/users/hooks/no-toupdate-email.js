@@ -9,7 +9,7 @@ export default (options = {}) => {
     const {data,params}=context
     // console.log(data)
     if(data.email){
-      if(data.email!==params.user.email){
+      if(data?.email!==params.user.email){
         throw new BadRequest("User email can't be changed")
       }
     }
